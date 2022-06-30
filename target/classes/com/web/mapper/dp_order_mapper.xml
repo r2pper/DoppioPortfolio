@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="mapper.order">
+	
+	<!-- 주문번호 생성-->
+	<select id="selectOnum" resultType="map" parameterType="map">
+		select sequ_doppio_order_onum.nextval as onum from dual
+	</select>
+	
+	<insert id="insert" parameterType="java.lang.String">
+		insert into doppio_order values(#{onum},#{mnum},'결제완료',sysdate)
+	</insert>
+	
+	
+	
+	<!-- 구매 내역 -->
+	<select id="list" parameterType="map" resultType="com.web.vo.DpOrderVO">
+		select dci.canum,dci.mnum,dci.pnum,dpa.ptitle,dpa.pprice,dpa.pfile,dpa.psfile,dci.cacount,dci.popid,dpo.popprice,dci.cadate
+	    from doppio_cart_item dci join doppio_package dpa on dci.pnum = dpa.pnum
+	    join doppio_package_option dpo on dpo.popid = dci.popid
+	    where dci.mnum=#{mnum} and dci.caorder='y'
+	</select>
+	
+	<select id="adminList" parameterType="map" resultType="com.web.vo.DpOrderVO">
+		select dci.canum,dci.mnum,dmb.id,dci.pnum,dpa.ptitle,dpa.pprice,dpa.pfile,dpa.psfile,dci.cacount,dci.popid,dpo.popprice,dci.cadate
+	    from doppio_cart_item dci join doppio_package dpa on dci.pnum = dpa.pnum
+	    join doppio_package_option dpo on dpo.popid = dci.popid
+        join doppio_member dmb on dmb.mnum = dci.mnum
+	</select>
+</mapper>

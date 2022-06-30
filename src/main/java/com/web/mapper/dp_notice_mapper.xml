@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="mapper.notice">
+	<insert id="insert" parameterType="com.web.vo.DpNoticeVO"> 
+		insert into doppio_notice
+		<choose>
+			<when test="nfile != null">
+				values('n_'||sequ_doppio_notice_nnum.nextval
+					,#{ntitle },#{ncontent},#{id}, 0 ,sysdate, #{nfile}, #{nsfile})
+			</when>
+			<otherwise>
+				values('n_'||sequ_doppio_notice_nnum.nextval
+					,#{ntitle },#{ncontent},#{id}, 0,sysdate, null, null)
+			</otherwise>
+		</choose>		
+	</insert>
+	
+	<select id="list" parameterType="map" resultType="com.web.vo.DpNoticeVO">
+	select rno, nnum, ntitle, id, ndate, nhits, nfile, nsfile 
+		from (select rownum rno, nnum, ntitle, id, to_char(ndate,'yyyy/mm/dd') ndate, nhits, nfile, nsfile
+		from (select nnum, ntitle, id, ndate, nhits, nfile, nsfile from doppio_notice
+	           <if test='keyword != null and keyword != "" '>
+	           	<if test='searchType=="title"'>
+	           		where ntitle like '%'||#{keyword}||'%'
+	           	</if>
+	           	<if test='searchType=="content"'>
+	           		where ncontent like '%'||#{keyword}||'%'
+	           	</if>
+	           	<if test='searchType=="id"'>
+	           		where id like '%'||#{keyword}||'%'
+	           	</if>
+	          </if>
+	          order by ndate desc
+	         )          
+	    ) 
+	where rno between #{start} and #{end}
+	</select>	
+	
+	<update id="update_hits" parameterType="java.lang.String">
+		update doppio_notice set nhits=nhits+1 where nnum=#{nnum}
+	</update>
+	
+	<select id="count" resultType="int">
+		select count(*) from doppio_notice
+	</select>
+
+	<select id="content" parameterType="java.lang.String" resultType="com.web.vo.DpNoticeVO">
+		select nnum, ntitle, ncontent, id, nhits, ndate, nfile, nsfile from doppio_notice where nnum=#{nnum }
+	</select>
+	
+	<update id="update" parameterType="com.web.vo.DpNoticeVO">
+		update doppio_notice
+		<choose>
+			<when test="nfile != null">
+				set ntitle=#{ntitle}, ncontent=#{ncontent}
+							, nfile=#{nfile}, nsfile=#{nsfile}
+			</when>
+			<otherwise>
+				set ntitle=#{ntitle}, ncontent=#{ncontent}			
+			</otherwise>
+		</choose>
+		where nnum=#{nnum}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.String">
+		delete from doppio_notice where nnum=#{nnum}	
+	</delete>
+	
+	<select id="nsfile" parameterType="java.lang.String" resultType="java.lang.String">
+		select nsfile from doppio_notice where nnum=#{nnum}
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

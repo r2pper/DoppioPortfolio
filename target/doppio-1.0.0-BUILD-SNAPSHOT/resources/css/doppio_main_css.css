@@ -1,0 +1,149 @@
+@charset "UTF-8";
+*{margin: 0; /* border:1px solid red; */}
+	#log{text-align: right; width: 1000px; height: 60px; margin: 0 auto; }
+	#log a{text-decoration: none; color: white; font-size: 12px; font-weight: bold;  }
+	
+	
+	li{cursor: pointer;}
+	nav ul.menu{
+		text-align: center; 
+		list-style: none;
+		margin-top: 10px;
+		
+	}
+	nav ul li{
+		display: inline-block; 
+		position: relative;		
+		height: 30px;
+	}
+	nav ul.menu li a:not(.innermenu){
+		font-size: 12pt;
+		text-align: none;
+		display: block;		
+		padding-left: 25px;
+		padding-right: 25px;
+		width: 150px;
+		color: white;
+	}
+	nav ul li a:hover {
+		text-decoration: underline;
+	}
+	ul ul{
+		position:absolute;
+		left: -1px;
+		width: 170px;	
+		display: none;
+		margin-top: 10px;
+		
+	}
+	nav ul li:hover>ul{
+		
+		width: 100%;
+		display: block;
+		background: black;
+		opacity: 70%;
+		list-style: none;
+		padding: 0;			
+	}	
+	.nav_list a{text-decoration: none;}
+	.nav_list{
+		
+		width:100%;		
+		text-align:center;
+		display: block;
+		padding-top: 12px;
+		padding-bottom: 12px;
+		list-style: none;		
+	}
+	
+	/* 메인 */
+	.main_bgpic{position: relative;}
+	.main_bgheader{position: absolute; top: 10%; left: 50%; transform: translate( -50%, -100% );}
+	.main_bgnav{position: absolute; top: 13%; left: 50%; transform: translate( -50%, -100% ); width: 100%;}
+	.main_letter{
+		width: 100%;
+		text-align: center;
+		position: absolute; top:30%;
+	}
+	.main_letter p{
+		color: white;
+		font-size: 22px;
+		font-family: sans-serif;
+		font-weight: 200;
+		font-variant: small-caps;
+		width: 100%; 		
+	}
+	.main_letter span{color: white; font-size: 90px; font-family: sans-serif; font-weight: 900;}
+	.main_letter p:hover{opacity: 80%;}
+	.main_letter span:hover{opacity: 80%;}
+	.main_new_text{margin-top: auto; text-align: center;}
+	.main_new_text p{font-size: 50px; font-family: sans-serif; font-weight: bolder; font-style: oblique;}
+	.main_new_box{width: 100%; text-align: center;}
+	.main_new_inner_box{width: 100%; margin: 0 auto;}
+	.main_new_pic{text-align: center; width: 20%; display: inline-block; margin-right: 30px;}
+	.main_new_pic a{font-size: 17px; font-family: sans-serif;}
+	.main_new_pic3{text-align: center; width: 20%; display: inline-block;}
+	.main_new_pic3 a{font-size: 17px; font-family: sans-serif;}
+	.main_new_more{width: 100%; margin-bottom: 10px; text-align: right;}
+	.main_new_more a{ font-size: 12px;}
+	.main_new_more a:hover{cursor: pointer; text-decoration: underline;}
+	div.main_new_inner_box div a{text-decoration: none; color: black;}
+
+	.slider {
+	    width: 100%;
+	    text-align: center;
+	    overflow: hidden;
+		margin-top: 200px;	
+	}  
+	.slides {
+		width:80%;
+	    display: flex;
+	   	overflow-x: hidden;
+		float: left;
+	} 
+	
+	.slides > div {
+	    flex-shrink: 0;
+	    width: 100%;
+	    height: 499px; 
+	    overflow: hidden;        
+	}  
+	.main_slide_img{
+	    object-fit: cover;	
+	    width: 100%;
+	    height: 100%;
+	}  
+	.slider a{ 	 
+		font-size:40px;
+		color:black;
+	   	text-decoration: none;
+	   	position: relative;
+	  	width: 9.8%;   
+	  	margin-top: 200px;
+	  }
+	.slider_a:first-child {	float: left;}
+	.slider_a:last-child {float: right;}
+	
+	
+	.main_review{width: 100%; height:150px; text-align: center;}
+	.main_review span{font-size: 50px; font-family: sans-serif; font-weight: bolder;}
+	.main_review p{font-size: 15px; font-family: sans-serif;}
+
+	.main_review_box{width: 100%; text-align: center; margin-bottom: 150px;}
+	.main_review_inner_box{width: 100%; margin: 0 auto;}
+	.main_review_pic{text-align: left; width: 20%; display: inline-block; margin-right: 30px;}
+	.main_review_pic p{text-align: left; font-family: sans-serif; font-weight: lighter; font-size: 12px; margin-top: 5px;}
+	.main_review_pic3{text-align: left; width: 20%; display: inline-block;}
+	.main_review_pic3 p{text-align: left; font-family: sans-serif; font-weight: lighter; font-size: 12px; margin-top: 5px;}
+	div.main_review_inner_box div a{text-decoration: none; color: black;}
+	.main_review_title{font-size: 18px; margin-top: 10px; margin-bottom: 5px; font-weight: bold;}
+	
+	.main_review_more{text-align: left;}
+	.main_review_more a{font-size: 10px; font-family: sans-serif;}
+	
+	/* footer */
+	footer{
+		background-image: url("/myspring/resources/img/footerdark.jpg"); 
+		background-repeat: no-repeat; background-size: 100%; height: 300px; clear: both;
+	}
+	#copyright{text-align: center; color: white; padding-top: 150px;}

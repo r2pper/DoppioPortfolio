@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.qna">
+	
+	<insert id="insert" parameterType="com.web.vo.DpQnaVO"> <!-- 0 앞에 id추가 -->
+		insert into doppio_qna values('q_'||sequ_doppio_qna_qnum.nextval,#{qtitle},#{qcontent},#{id},0,sysdate)
+	</insert>
+	
+	<select id="list" parameterType="map" resultType="com.web.vo.DpQnaVO"> <!-- qdate앞에 id추가 -->
+		select rno, qnum, qtitle, id, qdate, qhits 
+			from (select rownum rno, qnum, qtitle, id, to_char(qdate,'yyyy/mm/dd') qdate, qhits
+			     from (SELECT qnum, qtitle, id, qdate, qhits from doppio_qna order by qdate desc) 
+			     ) where rno between #{start} and #{end} 
+	</select>	
+	
+	<update id="update_hits" parameterType="java.lang.String">
+		update doppio_qna set qhits=qhits+1 where qnum=#{qnum}
+	</update>
+	
+	<select id="count" resultType="int">
+		select count(*) from doppio_qna
+	</select>
+	
+	<select id="content" parameterType="java.lang.String" resultType="com.web.vo.DpQnaVO">
+		select qnum, qtitle, qcontent, id, qhits, qdate from doppio_qna where qnum=#{qnum}
+	</select>
+	
+	<update id="update" parameterType="com.web.vo.DpQnaVO">
+		update doppio_qna set qtitle=#{qtitle}, qcontent=#{qcontent} where qnum=#{qnum}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.String">
+		delete from doppio_qna where qnum=#{qnum}	
+	</delete>
+	
+	
+</mapper>    

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+		<resources mapping="/resources/img/**" location="/resources/img/" />
+	<resources mapping="/resources/css/**" location="/resources/css/" />
+	<resources mapping="/resources/js/**" location="/resources/js/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+
+	
+	<!-- multipartResolver -->
+	<beans:bean id="multipartResolver" 
+				class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	</beans:bean> 
+	
+	<!-- DAO 생성 -->
+	<beans:bean id="memberDao" class="com.web.dao.DpMemberDAO"></beans:bean>
+	<beans:bean id="qnaDao" class="com.web.dao.DpQnaDAO"></beans:bean>
+	<beans:bean id="boardDao" class="com.web.dao.DpBoardDAO"></beans:bean>
+	<beans:bean id="recipeDao" class="com.web.dao.DpRecipeDAO"></beans:bean>
+	<beans:bean id="packageDao" class="com.web.dao.DpPackageDAO"></beans:bean>
+	<beans:bean id="commentDao" class="com.web.dao.DpCommentDAO"></beans:bean>
+	<beans:bean id="cartDao" class="com.web.dao.DpCartDAO"></beans:bean>
+	<beans:bean id="orderDao" class="com.web.dao.DpOrderDAO"></beans:bean>
+	<beans:bean id="noticeDao" class="com.web.dao.DpNoticeDAO"></beans:bean>
+
+	<!-- Service 객체 생성 -->
+	<beans:bean id="memberService" class="com.web.service.DpMemberServiceImpl"></beans:bean>
+	<beans:bean id="qnaService" class="com.web.service.DpQnaServiceImpl"></beans:bean>
+	<beans:bean id="pageService" class="com.web.service.DpPageServiceImpl"></beans:bean>
+	<beans:bean id="boardService" class="com.web.service.DpBoardServiceImpl"></beans:bean>
+	<beans:bean id="fileService" class="com.web.service.FileServiceImpl"></beans:bean>
+	<beans:bean id="recipeService" class="com.web.service.DpRecipeServiceImpl"></beans:bean>
+	<beans:bean id="packageService" class="com.web.service.DpPackageServiceImpl"></beans:bean>
+	<beans:bean id="commentService" class="com.web.service.DpCommentServiceImpl"></beans:bean>
+	<beans:bean id="cartService" class="com.web.service.DpCartServiceImpl"></beans:bean>
+	<beans:bean id="orderService" class="com.web.service.DpOrderServiceImpl"></beans:bean>
+	<beans:bean id="noticeService" class="com.web.service.DpNoticeServiceImpl"></beans:bean>
+
+	<!-- interceptor 객체 생성 -->
+	<beans:bean id="authInterceptor" class="com.web.interceptor.AuthInterceptor"></beans:bean>
+	<interceptors>
+		<interceptor>
+			<mapping path="/admin/admin.th"/>
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/admin/member/*"/>
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/admin/admin_recipe/*"/>
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/admin/admin_package/*"/>
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/admin/admin_notice/*"/>
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
+	<context:component-scan base-package="com.web.controller" />
+	
+	
+</beans:beans>

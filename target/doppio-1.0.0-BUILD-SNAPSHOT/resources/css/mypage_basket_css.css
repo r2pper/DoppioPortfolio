@@ -1,0 +1,53 @@
+@charset "UTF-8";
+ 
+	*{margin: 0;}
+	
+	div.mypage_basket {
+		text-align: center;
+		width: 100%;
+	}
+	
+	div.basket_fix {
+		text-align: center;
+		width: 1450px;
+		margin: auto;
+		margin-top: 70px;
+		/* border: 3px solid blue; */
+	}
+	
+	div.basket_div {
+		width: 100%;
+		margin: auto;
+		margin-top: 70px;
+		text-align: center;
+		border-top: 5px double #D2D2D2; padding-top: 50px;
+		border-bottom: 5px double #D2D2D2;
+		
+	}
+	
+	div.basket_sc {
+		width: 1450px;
+		margin: 0 auto;
+		display: inline-block;
+		position: absolute;
+		right: 200px;
+	}
+	
+	.basket_table>table th {
+		border-right: 3px double #D2D2D2;
+	}
+	
+	.basket_div td > img {
+		width: 150px;
+		height: 150px;
+	}
+	
+	.basket_sc>table {
+		border-collapse: collapse;
+		color: #333;
+		/* border: 3px solid red; */
+	}
+	
+	.delete_btn {
+		margin-left: 1200px;
+	}

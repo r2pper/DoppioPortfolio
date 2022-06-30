@@ -1,0 +1,225 @@
+@charset "UTF-8";
+ 
+/*recipe_content_css*/
+	
+ 	*{margin: 0;}
+	.tolist2{text-align: left; margin-left: 20%;}
+	div.recipe_content{
+		text-align: center;
+		width: 100%;
+	}
+	
+	div.recipe_content2 {
+		text-align: center;
+		width: 100%;
+	}
+	
+	div.content_div {
+		text-align: center;
+		width: 100%;
+		margin: auto;
+		margin-top: 30px;
+		margin-bottom: 35px;
+		border-top: 5px double #D2D2D2;
+		border-bottom: 5px double #D2D2D2;
+
+	}
+
+	.content_div>h2 {
+		margin-top: 30px; font-size: 30px; font-family: sans-serif; 
+		font-weight: bolder; font-style: oblique;
+	}
+	
+	.admin_button {
+		width: 100%;
+		/* border: 3px solid red; */
+		display: inline-block;
+		margin-top: 50px;
+	}
+
+	.admin_button button{
+		 margin-left: auto;
+		 width: 70px;
+	     background: #FFE08C;
+	     font-size: 14px;
+	     padding: 5px 10px;
+	     border-radius: 6px;
+	     border-style: none; 
+	     color: white;
+	     text-shadow: 1px 1px 1px black;
+	     box-shadow: 1px 1px 1px #F2CB61;
+	   }
+	
+	
+	/* .table_div {
+		border: 3px solid green;
+		text-align: center;
+		margin: auto;
+		margin-top: 20px;
+		margin-right: 345px;
+		width: 350px;
+	} */
+	
+	.content_table {
+		text-align: center;
+		display: inline-block;
+		margin-top: 30px;
+		width: 5%;
+		padding: 10px 10px 10px 10px;
+	}
+	
+	.table_div>table {
+		border-collapse: collapse;
+		width: 430px;
+		color: #333;
+	}
+	
+	.table_div> table th {
+		background-color: lightgray;
+		border-radius: 10px;
+		padding-right: 15px;
+		padding-left: 15px;
+	}
+	
+	 .content_table td {
+		padding-right: 15px;
+		padding-left: 15px;
+	}
+	
+	div.content_div>.iframediv{display: inline-block; width: 1000px; margin-top:5px;}
+	div.content_div>iframe {
+		text-align: center;	
+		margin-bottom: 30px;
+		border: 3px double #D2D2D2;
+	}
+	
+	.share {
+		
+		margin: auto;
+		margin-bottom: 20px;
+		text-align: center;
+		width: 1000px;
+		line-height: 28px;
+		/* border: 2px solid black;
+		border-radius: 10px;
+		padding: 10px 10px 10px 10px; */
+	}
+	
+	.share img:hover {
+		opacity: 40%;
+	}
+	
+	/* .share_con {
+		margin-right: 50px;
+		margin-left: 50px;
+	}
+	 */
+	   
+	   .purchasebtn{
+	   	 display:inline-block;
+	     margin-right: 50px; 
+	   }
+	   
+	   .purchasebtn >h5{
+	   	 font-size: 15px;
+	   	 color: #D2D2D2;
+	   }
+	   
+	   /* .purchasebtn button{
+	      background: #FFE08C;
+	      font-size: 15px;
+	      padding: 15px 25px;
+	      border-radius: 10px;
+	      border-style: none; 
+	      color: white;
+	      text-shadow: 1px 1px 1px black;
+	      box-shadow: 1px 1px 1px #F2CB61;
+	   } */
+	   
+	    .purchasebtn a{
+	   		text-decoration: none;
+	   		color: black;
+		}
+		
+	   .purchasebtn a:hover{
+	   		cursor: pointer;
+	   		text-decoration: underline;}
+	   	}
+	   
+	   .purchasebtn button:hover{cursor: pointer;}
+	   .subtitle{
+	      font-size: 20px;
+	      font-weight: bold;
+		  text-align: left;
+	   }
+	   
+	   .ingredient,.recipe{margin: 15px;}
+	   .recipe{list-style-type: decimal;}
+	   .commentfield{width: 700px; margin-left: 50px;}
+	   .commentfield textarea{
+	      font-size: 15px;
+	      padding-top: 12px;
+	      padding-bottom: 12px;
+	      padding-left: 8px;
+	      margin-bottom: 15px;
+	   }
+	   .commentfield2{width: 900px; display: inline-block;}
+	   .commentfield2 textarea{
+	   	  width: 800px;
+	      font-size: 15px;
+	      padding-top: 12px;
+	      padding-bottom: 12px;
+	      padding-left: 8px;
+	      margin-bottom: 15px;
+	   }
+	   
+
+	   button.enter{
+	      border: 2px solid #D2D2D2;
+		  color: #191919;
+		  background-color: white;	
+	      font-size: 15px;
+	      padding: 12px 20px;
+	      font-family: "paybooc-Light", sans-serif;
+	      border-radius: 10px;
+	      margin-bottom: 15px;
+	      cursor: pointer;
+	      font-weight: 600;
+	      transition: 0.25s;
+	   }
+		
+		 /* 버튼 통일 */
+		.w-btn-outline {
+		    position: relative;
+		    padding: 12px 25px;
+		    border-radius: 15px;
+		    font-family: "paybooc-Light", sans-serif;
+		    text-decoration: none;
+		    font-size: 15px;
+		    font-weight: 600;
+		    transition: 0.25s;
+			}
+	
+		
+		.w-btn-skin-outline {
+		    border: 2px solid #D2D2D2;
+		    color: #191919;
+		    background-color: white;
+		}
+		
+		.w-btn-skin-outline:hover {
+		   background-color: #FFF2CC;
+		   order: 2px solid #FFC000;
+		   /* color: #FFC000; */
+		   cursor: pointer;
+	}
+	   
+	   
+	   .commentfield textarea,button{vertical-align: middle;}
+	   .commentfield2 textarea,button{vertical-align: middle;}
+	   .subtitle {
+	   		font-weight:900;
+	   		font-style:italic;
+	   		font-size: 40px;
+	   		margin-bottom: 20px;
+	   }

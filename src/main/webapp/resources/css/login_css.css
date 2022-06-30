@@ -1,0 +1,34 @@
+@charset "UTF-8";
+	
+	.find_div{width: 100%; }
+	.find_table{margin: 0 auto; width: 350px; margin-bottom: 150px; border-spacing: 0; }
+	.search-title p{text-align: center; font-size: 15px;}
+	.find_td{width:85px; height:50px;}
+	.find_table tr td input{width: 265px; height:50px; border: none;}
+	
+	.findBtn{width: 346px; height: 40px; border-radius: 15px; border: 1px solid lightgray; background-color: transparent;}
+	.findBtn:hover{border: 1px solid #FFC000; background-color: #FFF2CC;}
+	
+	.smallTitle{width:100%; text-align: center;}
+	.find_div{width: 100%; text-align: center; margin: 50px 0; margin-bottom: 150px;}
+	
+	.findInfo{
+		width: 200px; height: 200px; 
+		border: 1px solid lightgray; margin: 0 20px;
+		 background-color: transparent;
+		 border-radius: 15px;
+		 font-size: 17px;
+		 letter-spacing: 3px;
+	}
+	.findInfo:hover{border: 1px solid #FFC000; background-color: #FFF2CC;}
+	
+	.result_title{
+		letter-spacing: 2px; font-size: 25px;
+		font-weight: 900;
+	}
+	.toLogin{
+		 border-radius: 15px; border: 1px solid lightgray; background-color: transparent;
+		 width: 200px; height: 40px;
+	}
+	.toLogin:hover{border: 1px solid #FFC000; background-color: #FFF2CC;}
+	.result_text{letter-spacing: 1px;}

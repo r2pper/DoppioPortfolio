@@ -1,0 +1,111 @@
+@charset "UTF-8";
+ 
+	*{margin: 0;}
+	
+	div.mypage_basket {
+		text-align: center;
+		width: 100%;
+	}
+	
+	div.basket_fix {
+		text-align: center;
+		width: 100%;
+		margin: auto;
+		margin-top: 70px;
+		/* border: 3px solid blue; */
+	}
+	
+	div.basket_div {
+		width: 1200px;
+		margin: auto;
+		margin-top: 70px;
+		text-align: center;
+		padding-top: 50px;
+		
+		
+	}
+	
+	div.basket_sc {
+		width: 1200px;
+		margin:auto;
+		margin-top: 40px;
+		display: inline-block;
+		position: absolute;
+		right: 200px;
+	}
+	
+	.basket_table>table th {
+		border-right: 3px double #D2D2D2;
+	}
+	
+	.basket_sc>table td {
+		padding: 50px 20px 20px 20px;
+		margin: 20px 20px 20px 20px;
+		
+	}
+	
+	.basket_div td > img {
+		width: 100px;
+		height: 100px;
+	}
+	
+	.basket_sc>table {
+		border-collapse: collapse;
+		color: #333;
+		/* border: 3px solid red; */
+	}
+	
+	.delete_btn {
+		margin-left: 1200px;
+	}
+	
+	.delBtn{
+		padding-left: 910px;
+	}
+	
+	.selectDelete_btn{
+		position: relative;
+	    padding: 12px 25px;
+	    border-radius: 15px;
+	    font-family: "paybooc-Light", sans-serif;
+	    text-decoration: none;
+	    font-size: 15px;
+	    font-weight: 600;
+	    transition: 0.25s;
+	    border: 2px solid #D2D2D2;
+	    color: #191919;
+	    background-color: white;
+	}
+	
+	
+	.selectDelete_btn:hover {
+	    background-color: #FFF2CC;
+	    border: 2px solid #FFC000;
+	    color: #FFC000;
+	    cursor: pointer;
+	}
+	
+	/* 버튼 통일 */
+	#w-btn-outline {
+	    position: relative;
+	    padding: 12px 25px;
+	    border-radius: 15px;
+	    font-family: "paybooc-Light", sans-serif;
+	    text-decoration: none;
+	    font-size: 15px;
+	    font-weight: 600;
+	    transition: 0.25s;
+	}
+	
+	#w-btn-skin-outline {
+	    border: 2px solid #D2D2D2;
+	    color: #191919;
+	    background-color: white;
+	}
+	
+	#w-btn-skin-outline:hover {
+    	background-color: #FFF2CC;
+	    border: 2px solid #FFC000;
+	    color: #FFC000;
+	    cursor: pointer;
+	}

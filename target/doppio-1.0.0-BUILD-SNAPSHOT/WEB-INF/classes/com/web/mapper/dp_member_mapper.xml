@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="mapper.member">
+
+	<!-- 회원가입 -->
+	<insert id="insert" parameterType="com.web.vo.DpMemberVO">
+		insert into doppio_member values('m_'||sequ_doppio_member_mnum.nextval,#{id},#{pass},#{name},#{hp},#{address},#{email},sysdate,'n',0)
+	</insert>
+	
+	<!-- 회원 가입시 아이디 중복 체크 -->
+	<select id="id_check" parameterType="java.lang.String" resultType="int">
+	  select count(*)from doppio_member where id=#{id}
+	</select>
+	
+	<!-- 로그인 -->
+	<select id="login" parameterType="com.web.vo.DpMemberVO" resultType="map">
+		select mnum, join_status from doppio_member where id=#{id} and pass=#{pass}
+	</select>
+	
+	<!-- 회원탈퇴 -->
+	<update id="status1" parameterType="java.lang.String">
+		update doppio_member set join_status=1 where mnum=#{mnum}
+	</update>
+	
+	<update id="status2" parameterType="java.lang.String">
+		update doppio_member set join_status=0 where mnum=#{mnum}
+	</update>
+	
+	<!-- 어드민 회원 전체 리스트 -->
+	<select id="list" parameterType="map" resultType="com.web.vo.DpMemberVO">
+		select rno, mnum, id, name, hp, address, email, mdate, join_status
+			from (select rownum rno, mnum, id, name, hp, address, email, mdate, join_status
+			from (select mnum, id, name, hp, address, email, mdate, join_status from doppio_member order by mdate desc)
+			) where rno between ${start} and #{end}
+	</select>
+	
+	<!-- 어드민 회원 전체 리스트 페이지 카운트 -->
+	<select id="count" resultType="int">
+		select count(*) from doppio_member
+	</select>
+	
+	<!-- 어드민 회원 상세 정보 -->
+	<select id="content" parameterType="java.lang.String" resultType="com.web.vo.DpMemberVO">
+		select mnum, id, pass, name, hp, address, email, mdate, join_status from doppio_member where mnum=#{mnum}
+	</select>
+	
+	<!-- 마이페이지 회원 정보 수정 -->
+	<update id="update" parameterType="com.web.vo.DpMemberVO">
+		update doppio_member set pass=#{pass}, name=#{name}, address=#{address}, hp=#{hp}, email=#{email} where mnum=#{mnum}
+	</update>
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="mapper.cart">
+	
+	<!-- 카트 담기 -->
+		<insert id="insert" parameterType="com.web.vo.DpCartVO">
+		insert into doppio_cart values('ca_'||sequ_doppio_cart_canum.nextval,#{pnum},#{id},#{popid},#{cacount}, sysdate)
+	</insert>
+	
+	<!-- 카트 목록 -->
+	<select id="list" parameterType="map" resultType="com.web.vo.DpCartVO">
+		select dca.canum, dca.popid, dca.cacount, dpa.ptitle, dpa.pprice, dpa.pfile, dpa.psfile
+		from doppio_cart dca join doppio_package dpa on dca.pnum=dpa.pnum where id = 'test'	
+	</select>
+	
+	<!-- 카트 삭제 -->
+	<delete id="delete">
+		delete from doppio_cart where canum=#{canum}	
+	</delete>
+</mapper>

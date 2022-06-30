@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="mapper.board">
+	
+	
+	<insert id="insert" parameterType="com.web.vo.DpBoardVO"> 
+		insert into doppio_board 
+		<choose>
+			<when test="bfile != null">
+				values('b_'||sequ_doppio_board_bnum.nextval
+					,#{btitle },#{bcontent},#{id}, 0 ,sysdate, #{bfile}, #{bsfile})
+			</when>
+			<otherwise>
+				values('b_'||sequ_doppio_board_bnum.nextval
+					,#{btitle },#{bcontent},#{id}, 0,sysdate, null, null)
+			</otherwise>
+		</choose>		
+	</insert>
+	
+	<select id="list" parameterType="map" resultType="com.web.vo.DpBoardVO"> <!-- bdate앞에 id추가 -->
+		select rno, bnum, btitle, id, bdate, bhits 
+			from (select rownum rno, bnum, btitle, id, to_char(bdate,'yyyy/mm/dd') bdate, bhits
+			     from (SELECT bnum, btitle, id, bdate, bhits from doppio_board order by bdate desc) 
+			     ) where rno between #{start} and #{end} 
+	</select>	
+	
+	<update id="update_hits" parameterType="java.lang.String">
+		update doppio_board set bhits=bhits+1 where bnum=#{bnum}
+	</update>
+	
+	<select id="count" resultType="int">
+		select count(*) from doppio_board
+	</select>
+
+	<select id="content" parameterType="java.lang.String" resultType="com.web.vo.DpBoardVO">
+		select bnum, btitle, bcontent, id, bhits, bdate, bfile, bsfile from doppio_board where bnum=#{bnum }
+	</select>
+	
+	<update id="update" parameterType="com.web.vo.DpBoardVO">
+		update doppio_board 
+		<choose>
+			<when test="bfile != null">
+				set btitle=#{btitle}, bcontent=#{bcontent}
+							, bfile=#{bfile}, bsfile=#{bsfile}
+			</when>
+			<otherwise>
+				set btitle=#{btitle}, bcontent=#{bcontent}			
+			</otherwise>
+		</choose>
+		where bnum=#{bnum}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.String">
+		delete from doppio_board where bnum=#{bnum}	
+	</delete>
+	
+	<select id="bsfile" parameterType="java.lang.String" resultType="java.lang.String">
+		select bsfile from doppio_board where bnum=#{bnum}
+	</select>
+</mapper>

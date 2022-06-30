@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.package">
+	
+	<select id="oplist" resultType="com.web.vo.DpPackageOptionVO">
+		select * from doppio_package_option
+	</select>
+	
+	<select id="list" parameterType="map" resultType="com.web.vo.DpPackageVO">
+		select rno, pnum, ptitle, phits, pdate, pfile, psfile, pcate from 
+				 (select rownum rno, pnum, ptitle, phits, pdate , pfile, psfile, pcate 
+			     from (SELECT pnum, ptitle, phits, pdate, pfile, psfile , pcate from doppio_package  
+
+			      <if test='pcate!=null and pcate!=""'>
+					where pcate=#{pcate}
+			     </if>
+			      order by pdate desc) 
+			     ) where rno between #{start} and #{end}
+	</select>
+	
+	<select id="count" resultType="int">
+		select count(*) from doppio_package where pcate=#{pcate}
+	</select>
+	<insert id="insert" parameterType="com.web.vo.DpPackageVO"> 
+		insert into doppio_package 
+		<choose>
+			<when test="pfile != null">
+				values('p_'||sequ_doppio_package_pnum.nextval
+					,#{ptitle }, #{pname }, #{pcontent}, sysdate, 0, #{pfile}, #{psfile}, #{pcate}, #{pprice}, #{pstock})
+			</when>
+			<otherwise>
+				values('p_'||sequ_doppio_package_pnum.nextval
+					,#{ptitle }, #{pname }, #{pcontent}, sysdate, 0, null, null, #{pcate}, #{pprice}, #{pstock})
+			</otherwise>
+		</choose>		
+	</insert>
+	<select id="psfile" parameterType="java.lang.String" resultType="java.lang.String">
+		select psfile from doppio_package where pnum=#{pnum}
+	</select>
+	<select id="content" parameterType="java.lang.String" resultType="com.web.vo.DpPackageVO">
+		select pnum, pname, ptitle, pcontent, pprice, pstock, pcate, phits, pdate, pfile, psfile from doppio_package where pnum=#{pnum}
+	</select>
+	<update id="update_hits" parameterType="java.lang.String">
+		update doppio_package set phits=phits+1 where pnum=#{pnum}
+	</update>
+	<update id="update" parameterType="com.web.vo.DpPackageVO">
+		update doppio_package
+		<choose>
+			<when test="pfile != null">
+				set pname=#{pname}, ptitle=#{ptitle}, pcontent=#{pcontent}, 
+				pfile=#{pfile}, psfile=#{psfile}, pprice=#{pprice}, pcate=#{pcate}, pstock=#{pstock}
+			</when>
+			<otherwise>
+				set pname=#{pname}, ptitle=#{ptitle}, pcontent=#{pcontent}, 
+				pprice=#{pprice}, pcate=#{pcate}, pstock=#{pstock}
+			</otherwise>
+		</choose>
+		where pnum=#{pnum}
+	</update>
+	
+	<delete id="delete">
+		delete from doppio_package where pnum=#{pnum}
+	</delete>
+	
+	
+</mapper>

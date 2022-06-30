@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.recipe">
+
+	<select id="rsfile" parameterType="java.lang.String" resultType="java.lang.String">
+		select rsfile from doppio_recipe where rnum=#{rnum}
+	</select>
+	
+	<update id="update_hits" parameterType="java.lang.String">
+		update doppio_recipe set rhits=rhits+1 where rnum=#{rnum}
+	</update>
+	
+	<select id="count" resultType="int">
+		select count(*) from doppio_recipe where rcate=#{rcate}
+	</select>
+	
+	<select id="list" parameterType="map" resultType="com.web.vo.DpRecipeVO">
+		select rno, rnum, rtitle, rhits, rdate, rfile, rsfile, rcate from 
+				 (select rownum rno,rnum, rtitle, rhits, rdate , rfile, rsfile, rcate
+			     from (SELECT rnum, rtitle, rhits, rdate, rfile, rsfile, rcate from doppio_recipe 
+			     <if test='rcate!=null and rcate!=""'>
+					where rcate=#{rcate}
+			     </if>
+			      order by rdate desc) 
+			     ) where rno between #{start} and #{end}
+			     
+	</select>
+	
+	<insert id="insert" parameterType="com.web.vo.DpRecipeVO">
+		insert into doppio_recipe
+			<choose>
+				<when test="rfile != null">
+					values('r_'||sequ_doppio_recipe_rnum.nextval, #{rname},#{rtitle},#{rcontent1},#{rcontent2},sysdate,0,#{rfile},#{rsfile},#{rurl},#{rcate})
+				</when>
+				<otherwise>
+					values('r_'||sequ_doppio_recipe_rnum.nextval, #{rname},#{rtitle},#{rcontent1},#{rcontent2},sysdate,0,null,null,#{rurl},#{rcate})
+				</otherwise>
+			</choose>
+	</insert>
+
+	
+	
+	<select id="content" parameterType="java.lang.String" resultType="com.web.vo.DpRecipeVO">
+		select rnum, rname, rtitle, rcontent1, rcontent2, rhits, rdate, rurl, rfile, rsfile, rcate from doppio_recipe where rnum=#{rnum}
+	</select>
+
+	<update id="update" parameterType="com.web.vo.DpRecipeVO">
+		update doppio_recipe
+		<choose>
+			<when test="rfile != null">
+				set rcate=#{rcate}, rname=#{rname},rtitle=#{rtitle},rcontent1=#{rcontent1}, rcontent2=#{rcontent2}, rfile=#{rfile}, rsfile=#{rsfile}, rurl=#{rurl}
+			</when>
+			<otherwise>
+				set rcate=#{rcate}, rname=#{rname},rtitle=#{rtitle},rcontent1=#{rcontent1},rcontent2=#{rcontent2}, rurl=#{rurl}
+			</otherwise>
+		</choose>
+		where rnum=#{rnum}
+	</update>
+	
+	<delete id="delete">
+		delete from doppio_recipe where rnum=#{rnum}
+	</delete>
+	
+</mapper>
